@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333333;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #999999;
+        }
+        
+        /* Hero section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Artwork display */
+        .artwork-display {
+            min-height: 100vh;
+            padding: 7rem 5% 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .artwork-container {
+            max-width: 1200px;
+            width: 100%;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .artwork-image {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+        
+        .artwork-details {
+            text-align: center;
+            max-width: 700px;
+        }
+        
+        .artwork-details h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .artwork-details .metadata {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .artwork-details p {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Artwork navigation */
+        .artwork-navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 2rem;
+        }
+        
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid #333333;
+            background-color: transparent;
+            color: #333333;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .nav-button:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        
+        .artwork-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: p
