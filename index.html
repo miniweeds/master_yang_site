@@ -83,66 +83,105 @@
             margin: 0 auto 2rem;
         }
         
-        /* Portfolio grid */
-        .portfolio {
-            padding: 5rem 5%;
+        /* Artwork display */
+        .artwork-display {
+            min-height: 100vh;
+            padding: 7rem 5% 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
-        .portfolio h2 {
+        .artwork-container {
+            max-width: 1200px;
+            width: 100%;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .artwork-image {
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+        
+        .artwork-details {
+            text-align: center;
+            max-width: 700px;
+        }
+        
+        .artwork-details h2 {
             font-size: 1.8rem;
             font-weight: 300;
-            margin-bottom: 3rem;
-            text-align: center;
+            margin-bottom: 1rem;
             letter-spacing: 1px;
         }
         
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            height: 400px;
-        }
-        
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .portfolio-item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .portfolio-item:hover .portfolio-item-overlay {
-            transform: translateY(0);
-        }
-        
-        .portfolio-item-overlay h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-        
-        .portfolio-item-overlay p {
-            font-size: 0.9rem;
+        .artwork-details .metadata {
+            font-size: 1rem;
             color: #666666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .artwork-details p {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Artwork navigation */
+        .artwork-navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 2rem;
+        }
+        
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid #333333;
+            background-color: transparent;
+            color: #333333;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .nav-button:hover {
+            background-color: #333333;
+            color: #ffffff;
+        }
+        
+        .artwork-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
         }
         
         /* About section */
@@ -282,75 +321,55 @@
                 font-size: 2.5rem;
             }
             
-            .portfolio-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .artwork-image {
+                max-width: 100%;
             }
+        }
+        
+        /* Page specific */
+        #artwork, #about, #contact {
+            display: none;
+        }
+        
+        .page-active {
+            display: block !important;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">YANG WEITAO</div>
+        <div class="logo">Weitao Yang</div>
         <div class="nav-links">
-            <a href="#portfolio">WORK</a>
-            <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
+            <a href="#" onclick="showPage('artwork'); return false;">WORK</a>
+            <a href="#" onclick="showPage('about'); return false;">ABOUT</a>
+            <a href="#" onclick="showPage('contact'); return false;">CONTACT</a>
         </div>
     </nav>
     
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1>CONTEMPORARY ARTIST</h1>
+            <h1>VISUAL ARTIST</h1>
+            <p>Exploring the intersection of light, form, and emotion through contemporary visual art.</p>
         </div>
     </section>
     
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <h2>SELECTED WORKS</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="/images/Screen Shot 2025-03-02 at 10.00.56 PM.png" alt="Day of Celebration">
-                <div class="portfolio-item-overlay">
-                    <h3>Reflections in Blue</h3>
-                    <p>Oil on canvas, 2023</p>
-                </div>
+    <!-- Artwork Display Section -->
+    <section id="artwork" class="artwork-display">
+        <div class="artwork-container">
+            <img src="/api/placeholder/900/600" alt="Current Artwork" class="artwork-image" id="current-artwork">
+            <div class="artwork-details">
+                <h2 id="artwork-title">Reflections in Blue</h2>
+                <div class="metadata" id="artwork-metadata">Oil on canvas, 120 × 90 cm, 2023</div>
+                <p id="artwork-description">A meditation on the transient nature of memory and the fluidity of perception. This piece explores how light interacts with water surfaces to create a constantly shifting visual experience that mirrors our own impermanent understanding of reality.</p>
             </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/400/400" alt="Artwork 2">
-                <div class="portfolio-item-overlay">
-                    <h3>Urban Fragments</h3>
-                    <p>Mixed media, 2022</p>
-                </div>
+            <div class="artwork-navigation">
+                <button class="nav-button" onclick="navigateArtwork(-1)">PREVIOUS</button>
+                <button class="nav-button" onclick="navigateArtwork(1)">NEXT</button>
             </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/400/400" alt="Artwork 3">
-                <div class="portfolio-item-overlay">
-                    <h3>Solitude</h3>
-                    <p>Photography, 2023</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/400/400" alt="Artwork 4">
-                <div class="portfolio-item-overlay">
-                    <h3>Echoes of Time</h3>
-                    <p>Acrylic on linen, 2022</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/400/400" alt="Artwork 5">
-                <div class="portfolio-item-overlay">
-                    <h3>Structural Harmony</h3>
-                    <p>Digital composite, 2023</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/400/400" alt="Artwork 6">
-                <div class="portfolio-item-overlay">
-                    <h3>Fragmented Memory</h3>
-                    <p>Sculpture, 2022</p>
-                </div>
+            <div class="artwork-thumbnails" id="thumbnails">
+                <!-- Thumbnails will be inserted by JavaScript -->
             </div>
         </div>
     </section>
@@ -362,19 +381,21 @@
         </div>
         <div class="about-content">
             <h2>ABOUT THE ARTIST</h2>
-            <p>Yang Weitao</p>
+            <p><Yang Weitao</p>
             <p>Pen Name: Yang Dan</p>
             <p>Alias: Yi Ri Zhai</p>
             <p>Graduated from the Central Academy of Fine Arts</p>
             <p>Member of the China Artists Association</p>
             <p>Member of the Jiang Zhaohe Art Research Association, China Artists Association</p>
-            <p>Personal documentaries, including "Yang Weitao's Spiritual Journey" produced by China Central Television Calligraphy and Painting
+            <p>Personal documentaries, including "Yang Weitao's Spiritual Journey"</p>
+            <p>produced by China Central Television Calligraphy and Painting</p>
             <p>Channel, are available on YouTube.</p>
-            <p>Author of over twenty personal art collections, including:
+            <p>Author of over twenty personal art collections, including:</p>
             <p>"The Door of the Master"</p>
             <p>"Yang Weitao Art Collection"</p>
             <p>"Yang Weitao Ink Figure Paintings"</p>
-            <p>Published 49 English versions of personal art collections available </p>
+            <p>Published 49 English versions of personal art collections available</p>
+    
         </div>
     </section>
     
@@ -407,5 +428,127 @@
     <footer>
         <p>&copy; 2025 Artist Name. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Artwork data
+        const artworks = [
+            {
+                image: "/api/placeholder/900/600",
+                title: "Reflections in Blue",
+                metadata: "Oil on canvas, 120 × 90 cm, 2023",
+                description: "A meditation on the transient nature of memory and the fluidity of perception. This piece explores how light interacts with water surfaces to create a constantly shifting visual experience that mirrors our own impermanent understanding of reality."
+            },
+            {
+                image: "/api/placeholder/900/600",
+                title: "Urban Fragments",
+                metadata: "Mixed media, 80 × 100 cm, 2022",
+                description: "An exploration of urban decay and renewal, this mixed media piece incorporates found objects from city environments to comment on the layered histories contained within metropolitan spaces."
+            },
+            {
+                image: "/api/placeholder/900/600",
+                title: "Solitude",
+                metadata: "Photography, 60 × 80 cm, 2023",
+                description: "Part of a series examining isolation in natural landscapes, this photograph captures the delicate balance between human presence and wilderness."
+            },
+            {
+                image: "/api/placeholder/900/600",
+                title: "Echoes of Time",
+                metadata: "Acrylic on linen, 150 × 120 cm, 2022",
+                description: "Inspired by archaeological sites and ancient markings, this painting layers translucent acrylic washes to create a sense of historical depth and temporal distance."
+            },
+            {
+                image: "/api/placeholder/900/600",
+                title: "Structural Harmony",
+                metadata: "Digital composite, 70 × 70 cm, 2023",
+                description: "Combining architectural photography with digital manipulation, this work examines how built environments create rhythmic patterns that engage with human perception."
+            },
+            {
+                image: "/api/placeholder/900/600",
+                title: "Fragmented Memory",
+                metadata: "Sculpture, 45 × 30 × 25 cm, 2022",
+                description: "Cast in bronze with a patinated finish, this sculptural piece explores how memories fracture and reform over time, creating new meanings from past experiences."
+            }
+        ];
+        
+        let currentArtworkIndex = 0;
+        
+        // Function to display current artwork
+        function displayArtwork(index) {
+            const artwork = artworks[index];
+            document.getElementById('current-artwork').src = artwork.image;
+            document.getElementById('artwork-title').textContent = artwork.title;
+            document.getElementById('artwork-metadata').textContent = artwork.metadata;
+            document.getElementById('artwork-description').textContent = artwork.description;
+            
+            // Update active thumbnail
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+        
+        // Function to navigate between artworks
+        function navigateArtwork(direction) {
+            currentArtworkIndex = (currentArtworkIndex + direction + artworks.length) % artworks.length;
+            displayArtwork(currentArtworkIndex);
+        }
+        
+        // Function to show page
+        function showPage(pageId) {
+            // Hide all sections
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('artwork').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+            document.getElementById('contact').style.display = 'none';
+            
+            // Show selected section
+            if (pageId === 'home') {
+                document.getElementById('home').style.display = 'flex';
+            } else {
+                document.getElementById(pageId).style.display = 'block';
+            }
+            
+            // If showing artwork, reset to first artwork
+            if (pageId === 'artwork') {
+                displayArtwork(currentArtworkIndex);
+            }
+        }
+        
+        // Initialize thumbnails
+        function initThumbnails() {
+            const thumbnailsContainer = document.getElementById('thumbnails');
+            artworks.forEach((artwork, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = artwork.image;
+                thumbnail.alt = artwork.title;
+                thumbnail.classList.add('thumbnail');
+                if (index === currentArtworkIndex) {
+                    thumbnail.classList.add('active');
+                }
+                thumbnail.addEventListener('click', () => {
+                    currentArtworkIndex = index;
+                    displayArtwork(index);
+                });
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Initialize
+        window.onload = function() {
+            initThumbnails();
+            // Start with home page
+            showPage('home');
+            
+            // Add event listener for "WORK" link to show artwork
+            document.querySelector('.nav-links a:first-child').addEventListener('click', function(e) {
+                e.preventDefault();
+                showPage('artwork');
+            });
+        };
+    </script>
 </body>
 </html>
